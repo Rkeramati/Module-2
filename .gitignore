@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 *.\#*
 data/
-pyodide
+pyodideModule2.md
+module2-modernization.md
