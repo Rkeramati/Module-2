@@ -42,8 +42,9 @@ def index_to_position(index: Index, strides: Strides) -> int:
     Returns:
         Position in storage
     """
-
     # TODO: Implement for Task 2.1.
+    # Hint: Use strides to navigate through memory layout
+    # Each dimension contributes to the final position based on its stride
     raise NotImplementedError("Need to implement for Task 2.1")
 
 
@@ -61,6 +62,8 @@ def to_index(ordinal: int, shape: Shape, out_index: OutIndex) -> None:
 
     """
     # TODO: Implement for Task 2.1.
+    # Hint: Think about converting a number to different bases
+    # Work backwards from the last dimension to the first
     raise NotImplementedError("Need to implement for Task 2.1")
 
 
@@ -84,6 +87,9 @@ def broadcast_index(
         None
     """
     # TODO: Implement for Task 2.2.
+    # Hint: Align dimensions from the right (last dimension first)
+    # If smaller tensor dimension is 1, map to index 0
+    # Otherwise, use the corresponding index from big_index
     raise NotImplementedError("Need to implement for Task 2.2")
 
 
@@ -102,6 +108,9 @@ def shape_broadcast(shape1: UserShape, shape2: UserShape) -> UserShape:
         IndexingError : if cannot broadcast
     """
     # TODO: Implement for Task 2.2.
+    # Hint: Pad shorter shape with 1s on the left to make them same length
+    # Then check each dimension: must be equal, or one must be 1
+    # If one is 1, take the other; if both equal, take either
     raise NotImplementedError("Need to implement for Task 2.2")
 
 
@@ -223,6 +232,8 @@ class TensorData:
         ), f"Must give a position to each dimension. Shape: {self.shape} Order: {order}"
 
         # TODO: Implement for Task 2.1.
+        # Hint: Reorder both shape and strides according to the permutation
+        # The storage remains the same, only the view changes
         raise NotImplementedError("Need to implement for Task 2.1")
 
     def to_string(self) -> str:

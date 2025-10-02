@@ -129,8 +129,3 @@ dmypy.json
 .pyre/
 *.\#*
 data/
-pyodideModule2.md
-module2-modernization.md
-task2_1_comments.md
-task2_2_comments.md
-task2_3_comments.md
