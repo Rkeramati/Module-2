@@ -269,6 +269,11 @@ def tensor_map(fn: Callable[[float], float]) -> Any:
         in_strides: Strides,
     ) -> None:
         # TODO: Implement for Task 2.3.
+        # Hint: Iterate through each output position using ordinal indexing
+        # Use to_index to convert ordinal to multidimensional index
+        # Use broadcast_index to map output index to input index
+        # Use index_to_position to get storage positions
+        # Apply fn to input value and store in output
         raise NotImplementedError("Need to implement for Task 2.3")
 
     return _map
@@ -319,6 +324,10 @@ def tensor_zip(fn: Callable[[float, float], float]) -> Any:
         b_strides: Strides,
     ) -> None:
         # TODO: Implement for Task 2.3.
+        # Hint: Similar to tensor_map but with two input tensors
+        # For each output position, get corresponding positions in both inputs
+        # Both inputs may need broadcasting to output shape
+        # Apply fn to both input values and store result
         raise NotImplementedError("Need to implement for Task 2.3")
 
     return _zip
@@ -355,6 +364,10 @@ def tensor_reduce(fn: Callable[[float, float], float]) -> Any:
         reduce_dim: int,
     ) -> None:
         # TODO: Implement for Task 2.3.
+        # Hint: For each output position, iterate over the reduce dimension
+        # Copy output index to input index, then vary the reduce dimension
+        # Apply reduction function (fn) to accumulate values
+        # Remember output is pre-initialized with start value
         raise NotImplementedError("Need to implement for Task 2.3")
 
     return _reduce

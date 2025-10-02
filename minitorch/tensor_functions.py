@@ -212,6 +212,9 @@ class Permute(Function):
     @staticmethod
     def forward(ctx: Context, a: Tensor, order: Tensor) -> Tensor:
         # TODO: Implement for Task 2.3.
+        # Hint: Convert order tensor to list of integers
+        # Use tensor's permute method on the underlying _tensor
+        # Create new Tensor with same backend
         raise NotImplementedError("Need to implement for Task 2.3")
 
     @staticmethod
