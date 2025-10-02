@@ -5,7 +5,7 @@ from hypothesis.strategies import DataObject, data
 import minitorch
 from minitorch import TensorData
 
-from .tensor_strategies import indices, tensor_data
+from .tensor_strategies import tensor_data, tensor_data_indices
 
 # ## Tasks 2.1
 
@@ -81,7 +81,7 @@ def test_index(tensor_data: TensorData) -> None:
 @given(data())
 def test_permute(data: DataObject) -> None:
     td = data.draw(tensor_data())
-    ind = data.draw(indices(td))
+    ind = data.draw(tensor_data_indices(td))
     td_rev = td.permute(*list(reversed(range(td.dims))))
     assert td.index(ind) == td_rev.index(tuple(reversed(ind)))
 
@@ -118,6 +118,30 @@ def test_shape_broadcast() -> None:
 
     c = minitorch.shape_broadcast((2, 5), (5,))
     assert c == (2, 5)
+
+
+@pytest.mark.task2_2
+def test_broadcast_index() -> None:
+    big_index = minitorch.array([1, 2, 3])
+    big_shape = minitorch.array([2, 3, 4])
+    shape = minitorch.array([1, 3, 4])
+    out_index = minitorch.array([0, 0, 0])
+
+    minitorch.broadcast_index(big_index, big_shape, shape, out_index)
+    assert out_index[0] == 0  # dimension 1 maps to 0
+    assert out_index[1] == 2  # dimension 3 matches
+    assert out_index[2] == 3  # dimension 4 matches
+
+    # Test with more dimensions of size 1
+    big_index = minitorch.array([1, 0, 2])
+    big_shape = minitorch.array([2, 1, 3])
+    shape = minitorch.array([1, 1, 3])
+    out_index = minitorch.array([0, 0, 0])
+
+    minitorch.broadcast_index(big_index, big_shape, shape, out_index)
+    assert out_index[0] == 0  # dimension 1 maps to 0
+    assert out_index[1] == 0  # dimension 1 maps to 0
+    assert out_index[2] == 2  # dimension 3 matches
 
 
 @given(tensor_data())

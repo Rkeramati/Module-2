@@ -39,11 +39,25 @@ python project/run_tensor.py
 
 ## Tasks
 
-- **Task 2.1**: Implement tensor data structures with indexing and strides
-- **Task 2.2**: Implement tensor broadcasting for operations between different shapes
-- **Task 2.3**: Implement tensor operations (map, zip, reduce) and mathematical functions
-- **Task 2.4**: Extend autodifferentiation to work with tensors and broadcasting
-- **Task 2.5**: Create tensor-based neural network training
+### Task 2.1: Tensor Data - Indexing
+**File to Edit**: `minitorch/tensor_data.py`
+
+### Task 2.2: Tensor Broadcasting
+**File to Edit**: `minitorch/tensor_data.py`
+
+### Task 2.3: Tensor Operations
+**Files to Edit**: `minitorch/tensor_ops.py`, `minitorch/tensor_functions.py`, `minitorch/tensor.py`
+
+### Task 2.4: Extend autodifferentiation to work with tensors and broadcasting
+**Files to Edit**: `minitorch/tensor_functions.py`
+
+### Task 2.5: Tensor-Based Neural Network Training
+**File to Edit**: `project/run_tensor.py`
+
+**Requirements**:
+- Train on all datasets and record results in README
+- Record time per epoch for performance comparison
+- Should match functionality of `project/run_scalar.py` but use tensor operations
 
 ## Testing
 

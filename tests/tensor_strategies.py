@@ -64,6 +64,11 @@ def indices(draw: DrawFn, layout: Tensor) -> UserIndex:
 
 
 @composite
+def tensor_data_indices(draw: DrawFn, layout: TensorData) -> UserIndex:
+    return tuple((draw(integers(min_value=0, max_value=s - 1)) for s in layout.shape))
+
+
+@composite
 def tensors(
     draw: DrawFn,
     numbers: SearchStrategy[float] = floats(
