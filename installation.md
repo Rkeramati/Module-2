@@ -1,8 +1,3 @@
----
-hide:
-  - navigation
----
-
 # MiniTorch Module 2 Installation
 
 MiniTorch requires Python 3.8 or higher. To check your version of Python, run:
