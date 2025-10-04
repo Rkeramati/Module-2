@@ -46,7 +46,7 @@ python project/run_tensor.py
 **File to Edit**: `minitorch/tensor_data.py`
 
 ### Task 2.3: Tensor Operations
-**Files to Edit**: `minitorch/tensor_ops.py`, `minitorch/tensor_functions.py`, `minitorch/tensor.py`
+**Files to Edit**: `minitorch/tensor_ops.py`, `minitorch/tensor_functions.py`
 
 ### Task 2.4: Extend autodifferentiation to work with tensors and broadcasting
 **Files to Edit**: `minitorch/tensor_functions.py`
@@ -55,9 +55,13 @@ python project/run_tensor.py
 **File to Edit**: `project/run_tensor.py`
 
 **Requirements**:
-- Train on all datasets and record results in README
+- Train on the first four datasets and record results in README
 - Record time per epoch for performance comparison
 - Should match functionality of `project/run_scalar.py` but use tensor operations
+- To run streamlit, use:
+```bash
+streamlit run project/app.py -- 2
+```
 
 ## Testing
 
