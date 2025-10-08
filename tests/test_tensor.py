@@ -43,6 +43,17 @@ def test_two_args(
     name, base_fn, tensor_fn = fn
     t1, t2 = ts
     t3 = tensor_fn(t1, t2)
+    
+    if name == "gt2" or name == "lt2":
+        gap = (t1 + 1.2) - t2
+        assume((gap > 1e-3).all() or (gap < -1e-3).all())
+    elif name == "eq2":
+        gap = t1 - (t2 + 5.5)
+        assume((gap > 1e-3).all())
+    elif name == "div2":
+        denom = t2 + 5.5
+        assume((abs(denom) > 1e-3).all()) 
+
     for ind in t3._tensor.indices():
         assert_close(t3[ind], base_fn(t1[ind], t2[ind]))
 
@@ -107,13 +118,15 @@ def test_two_grad(
     name, _, tensor_fn = fn
     t1, t2 = ts
 
-    # Avoid discontinuities for comparison functions
     if name == "gt2" or name == "lt2":
-        assume(abs((t1.to_numpy().min() + 1.2) - t2.to_numpy().max()) > 1e-3)
-        assume(abs((t1.to_numpy().max() + 1.2) - t2.to_numpy().min()) > 1e-3)
+        gap = (t1 + 1.2) - t2
+        assume((gap > 1e-3).all() or (gap < -1e-3).all())
     elif name == "eq2":
-        assume(abs(t1.to_numpy().min() - (t2.to_numpy().max() + 5.5)) > 1e-3)
-        assume(abs(t1.to_numpy().max() - (t2.to_numpy().min() + 5.5)) > 1e-3)
+        gap = t1 - (t2 + 5.5)
+        assume((gap > 1e-3).all())
+    elif name == "div2":
+        denom = t2 + 5.5
+        assume((abs(denom) > 1e-3).all()) 
 
     grad_check(tensor_fn, t1, t2)
 
@@ -129,13 +142,15 @@ def test_two_grad_broadcast(
     name, base_fn, tensor_fn = fn
     t1, t2 = ts
 
-    # Avoid discontinuities for comparison functions
     if name == "gt2" or name == "lt2":
-        assume(abs((t1.to_numpy().min() + 1.2) - t2.to_numpy().max()) > 1e-3)
-        assume(abs((t1.to_numpy().max() + 1.2) - t2.to_numpy().min()) > 1e-3)
+        gap = (t1 + 1.2) - t2
+        assume((gap > 1e-3).all() or (gap < -1e-3).all())
     elif name == "eq2":
-        assume(abs(t1.to_numpy().min() - (t2.to_numpy().max() + 5.5)) > 1e-3)
-        assume(abs(t1.to_numpy().max() - (t2.to_numpy().min() + 5.5)) > 1e-3)
+        gap = t1 - (t2 + 5.5)
+        assume((gap > 1e-3).all())
+    elif name == "div2":
+        denom = t2 + 5.5
+        assume((abs(denom) > 1e-3).all()) 
 
     grad_check(tensor_fn, t1, t2)
 
