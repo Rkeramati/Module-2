@@ -118,14 +118,6 @@ def test_two_grad(
     name, _, tensor_fn = fn
     t1, t2 = ts
 
-    # Avoid discontinuities for comparison functions
-    if name == "gt2" or name == "lt2":
-        assume(abs((t1.to_numpy().min() + 1.2) - t2.to_numpy().max()) > 1e-3)
-        assume(abs((t1.to_numpy().max() + 1.2) - t2.to_numpy().min()) > 1e-3)
-    elif name == "eq2":
-        assume(abs(t1.to_numpy().min() - (t2.to_numpy().max() + 5.5)) > 1e-3)
-        assume(abs(t1.to_numpy().max() - (t2.to_numpy().min() + 5.5)) > 1e-3)
-
     if name == "gt2" or name == "lt2":
         gap = (t1 + 1.2) - t2
         assume((gap > 1e-3).all() or (gap < -1e-3).all())
@@ -149,14 +141,6 @@ def test_two_grad_broadcast(
     "Test the grad of a two argument function"
     name, base_fn, tensor_fn = fn
     t1, t2 = ts
-
-    # Avoid discontinuities for comparison functions
-    if name == "gt2" or name == "lt2":
-        assume(abs((t1.to_numpy().min() + 1.2) - t2.to_numpy().max()) > 1e-3)
-        assume(abs((t1.to_numpy().max() + 1.2) - t2.to_numpy().min()) > 1e-3)
-    elif name == "eq2":
-        assume(abs(t1.to_numpy().min() - (t2.to_numpy().max() + 5.5)) > 1e-3)
-        assume(abs(t1.to_numpy().max() - (t2.to_numpy().min() + 5.5)) > 1e-3)
 
     if name == "gt2" or name == "lt2":
         gap = (t1 + 1.2) - t2
